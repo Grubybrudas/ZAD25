@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie Zdarzenia JavaScript</title>
+    <style>
+        #kontener {
+            width: 50px;
+            height: 50px;
+            background-color: lightgray;
+            font-size: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: font-size 0.2s;
+        }
+        .wyroznione {
+            margin-top: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #artykul {
+            margin-top: 20px;
+            width: 150px;
+        }
+        #liczba {
+            margin-top: 10px;
+            padding: 5px;
+            background-color: #f0f0f0;
+            min-height: 20px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="kontener">Ksawery Marchewka</div>
+
+    <p class="wyroznione">Radom</p>
+
+    <input type="text" id="artykul">
+    <div id="liczba"></div>
+
+    <script>
+        const kontener = document.getElementById('kontener');
+
+        kontener.addEventListener('click', function() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            kontener.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        });
+
+        kontener.addEventListener('mouseenter', function() {
+            kontener.style.fontSize = '28px';
+        });
+
+        kontener.addEventListener('mouseleave', function() {
+            kontener.style.fontSize = '14px';
+        });
+
+        const paragraf = document.querySelector('.wyroznione');
+
+        paragraf.addEventListener('dblclick', function() {
+            paragraf.textContent = 'Radomski';
+        });
+
+        paragraf.addEventListener('mouseenter', function() {
+            console.log(paragraf.textContent);
+        });
+
+        const artykul = document.getElementById('artykul');
+        const divLiczba = document.getElementById('liczba');
+
+        artykul.addEventListener('keydown', function(event) {
+            const obecnaSzerokosc = artykul.offsetWidth;
+            artykul.style.width = (obecnaSzerokosc + 1) + 'px';
+
+            if (event.key >= '0' && event.key <= '9') {
+                divLiczba.textContent += event.key;
+            }
+        });
+    </script>
+
+</body>
+</html>
